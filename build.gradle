@@ -1,0 +1,48 @@
+version = '1.0.0'
+
+System.properties["file.encoding"] = "UTF-8"
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'war'
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+    ext {
+
+        slf4jVersion = '1.7.5'
+        log4jVersion = '1.2.17'
+        junitVersion = '4.10'
+
+        fastjsonVersion = '1.1.40'
+        httpclientVersion = '4.3.3'
+
+        profile = System.getProperty("env", "dev")
+        println "[current profile]:" + profile
+    }
+
+    sourceSets {
+        main {
+            resources {
+                srcDirs = ["src/main/resources", "env/$profile"]
+            }
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile "log4j:log4j:$log4jVersion"
+        compile "org.slf4j:slf4j-api:$slf4jVersion"
+        compile "org.slf4j:slf4j-log4j12:$slf4jVersion"
+        compile "org.apache.httpcomponents:httpclient:$httpclientVersion"
+        compile "com.alibaba:fastjson:$fastjsonVersion"
+
+        testCompile "junit:junit:$junitVersion"
+    }
+}
