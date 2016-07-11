@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Austin on 2016/7/8.
@@ -22,6 +23,15 @@ public class ConfigFactory {
     }
 
     public static void init(String appPath) {
+        watcher.connectionHandler = new IZKPWatcher() {
+            @Override
+            public void watch(String path, ZKPManager watcher) {
+                List<IZKPWatcher> handlers = WatcherPool.getList(WatcherPool.HandleMethod.CONNECT);
+                for (IZKPWatcher handler : handlers) {
+                    handler.watch(path, watcher);
+                }
+            }
+        };
 
     }
 
