@@ -6,6 +6,7 @@ import org.apache.zookeeper.data.Stat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -18,13 +19,13 @@ public class ZKPManager implements Watcher {
     private ZooKeeper zk = null;
     private CountDownLatch downLoatch = new CountDownLatch(1);
     private static final int sessionTimeout = 10000;
-    /*  */
+    /* 更新处理器 */
     public IZKPWatcher updateHandler;
-    /*  */
+    /* 过期处理器 */
     public IZKPWatcher expiredHandler;
-    /*  */
+    /* 子节点变化处理器 */
     public IZKPWatcher childrenChangedHandler;
-    /*  */
+    /* 连接处理器 */
     public IZKPWatcher connectionHandler;
 
     /**
@@ -80,6 +81,22 @@ public class ZKPManager implements Watcher {
             log.error("Write Date thread exception", e);
         }
         return null;
+    }
+
+    /**
+     * 返回指定路径的所有子节点名称
+     * @param path
+     * @param needWatch
+     * @return
+     */
+    public List<String> getChildren(String path, boolean needWatch) {
+        try {
+            List<String> nodes = this.zk.getChildren(path, needWatch);
+            return nodes;
+        } catch (Exception e) {
+            log.error("Get children exception", e);
+            return null;
+        }
     }
 
     @Override

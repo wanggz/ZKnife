@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ *
  * Created by Austin on 2016/7/8.
  */
 public class ConfigFactory {
@@ -26,6 +27,17 @@ public class ConfigFactory {
     }
 
     public static void init(String appPath) {
+        watcher.createConnection();
+        List<String> paths = watcher.getChildren(appPath, false);
+        if (paths == null)
+            return;
+        for (String path : paths) {
+            build(appPath + "/" + path);
+        }
+        addHandler();
+    }
+
+    private static void addHandler(){
         watcher.connectionHandler = new IZKPWatcher() {
             @Override
             public void watch(String path, ZKPManager watcher) {
@@ -57,6 +69,39 @@ public class ConfigFactory {
                 }
             }
         };
+        watcher.expiredHandler = new IZKPWatcher() {
+            @Override
+            public void watch(String path, ZKPManager watcher) {
+                try {
+                    List<IZKPWatcher> handlers = WatcherPool.getList(WatcherPool.HandleMethod.EXPIRED);
+                    for (IZKPWatcher handler : handlers) {
+                        handler.watch(path, watcher);
+                    }
+                    System.out.println("zookeeper session 过期");
+                    System.out.println(path);
+                    ZKPRouser.reload(AppProperties.ZOOKEEPER_PATH);
+                } catch (Exception ex) {
+
+                }
+            }
+        };
+        watcher.childrenChangedHandler = new IZKPWatcher() {
+            @Override
+            public void watch(String path, ZKPManager watcher) {
+                build(path);
+                configMap.get(path).update();
+                if (appConfigs.containsKey(path)) {
+                    appConfigs.get(path).updateConfig(appConfigs.get(path));
+                }
+                watcher.getChildren(path, true);
+                List<IZKPWatcher> handlers = WatcherPool.getList(WatcherPool.HandleMethod.CHANGE);
+                for (IZKPWatcher handler : handlers) {
+                    handler.watch(path, watcher);
+                }
+                System.out.println("childrenChangedHandler:" + path);
+                System.out.println(appConfigs.get(path));
+            }
+        };
     }
 
     public static ZKPManager getWatcher() {
@@ -68,7 +113,7 @@ public class ConfigFactory {
         ZPConfig fconfig = fileCreater.get(path);
 
         if (rconfig == null && fconfig == null) {
-            System.out.println("没有获得任何配置文件！");
+            log.info("没有获得任何配置文件！");
             return;
         }
 
