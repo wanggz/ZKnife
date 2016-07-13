@@ -1,6 +1,3 @@
-/*
- *
- */
 package com.yudao.zknife.config;
 
 import java.io.IOException;

@@ -13,7 +13,7 @@ import com.yudao.zknife.utils.FileHelper;
 public abstract class AbsConfigOperator {
 
     /**
-     *
+     * 读取配置信息的抽象方法
      * @param path
      * @return
      */

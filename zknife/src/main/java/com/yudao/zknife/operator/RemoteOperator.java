@@ -4,6 +4,8 @@ import com.yudao.zknife.core.ZKPManager;
 import com.yudao.zknife.core.ZPConfig;
 
 /**
+ * 远程配置操作器
+ *
  * Created by Austin on 2016/7/11.
  */
 public class RemoteOperator extends AbsConfigOperator {
@@ -15,7 +17,7 @@ public class RemoteOperator extends AbsConfigOperator {
     }
 
     /**
-     * 从zookeeper中读取节点存储信息
+     * 从zookeeper中读取节点存储的配置信息
      * @param path
      * @return
      */
