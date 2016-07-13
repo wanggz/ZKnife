@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * 默认远程配置文件
  *
- * Created by guangzhi.wang on 2016/7/11.
+ * Created by Austin on 2016/7/11.
  */
 public class AppSettings extends ZPConfig {
 

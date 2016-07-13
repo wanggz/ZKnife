@@ -14,8 +14,15 @@ public class RemoteOperator extends AbsConfigOperator {
         this.watcher = watcher;
     }
 
+    /**
+     * 从zookeeper中读取节点存储信息
+     * @param path
+     * @return
+     */
     @Override
     public ZPConfig get(String path) {
-        return null;
+        String content = watcher.readData(path, true);
+        ZPConfig config=this.get(path, content);
+        return config;
     }
 }

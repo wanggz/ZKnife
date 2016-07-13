@@ -13,11 +13,11 @@ import java.util.Properties;
 public class AppProperties {
 
     /**
-     *
+     * zookeeper集群的host地址
      */
     public static String ZOOKEEPER_PATH;
     /**
-     *
+     * 项目在zookeeper集群中的节点路径
      */
     public static String ZOOKEEPER_ADDRESS;
 

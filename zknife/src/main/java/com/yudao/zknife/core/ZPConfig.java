@@ -29,6 +29,9 @@ public abstract class ZPConfig {
         this.path = path;
     }
 
+    /**
+     * 扩展自定义逻辑函数
+     */
     public abstract void adjust();
 
     public void update() {
