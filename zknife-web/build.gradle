@@ -1,12 +1,34 @@
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
-version = '1.0'
-
 repositories {
     mavenCentral()
 }
 
+ext {
+    springVersion = '3.2.4.RELEASE'
+}
+
 dependencies {
+
+    compile 'javax.servlet:javax.servlet-api:3.0.1'
+    compile "org.springframework:spring-core:$springVersion"
+    compile "org.springframework:spring-expression:$springVersion"
+    compile "org.springframework:spring-web:$springVersion"
+    compile "org.springframework:spring-webmvc:$springVersion"
+    compile "org.springframework:spring-beans:$springVersion"
+    compile "org.springframework:spring-context:$springVersion"
+    compile "org.springframework:spring-jdbc:$springVersion"
+    compile "org.springframework:spring-orm:$springVersion"
+    compile "org.springframework:spring-aop:$springVersion"
+    compile "org.springframework:spring-tx:$springVersion"
+    compile "org.springframework:spring-context-support:$springVersion"
+
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task renameWar(type:Copy, dependsOn:war) {
+    from "target.txt"
+    from 'build/libs/'
+    into 'build/release/'
+    rename('zknife-example.war','ROOT.war')
 }
