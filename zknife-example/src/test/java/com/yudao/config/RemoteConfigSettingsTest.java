@@ -1,10 +1,10 @@
 package com.yudao.config;
 
-public class ExampleSettingsTest {
+public class RemoteConfigSettingsTest {
 
     public static void main(String[] args) {
 
-        ExampleSettings exampleSettings = ExampleSettings.Instance();
+        RemoteConfigSettings exampleSettings = RemoteConfigSettings.Instance();
         System.out.println(exampleSettings);
 
     }
