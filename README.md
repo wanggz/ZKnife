@@ -7,6 +7,11 @@
 
 > web ui 引用 [JSONedit](https://github.com/mb21/JSONedit)
 
+### ZKnife功能
+* 快速自定义项目配置
+* 实时同步配置
+* 支持配置项目临时节点
+
 每一个项目都有一个默认节点（AppSettings）
 每个项目都可以自定义节点，节点有两种类型，一种是永久性，一种是临时性。
 
