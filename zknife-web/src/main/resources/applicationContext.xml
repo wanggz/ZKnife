@@ -6,6 +6,11 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
+    <context:property-placeholder location="classpath:config.properties"/>
     <context:annotation-config/>
+
+    <bean id="zkc" class="com.github.zkclient.ZkClient" destroy-method="close">
+        <constructor-arg name="connectString" value="${zookeeper.address}"/>
+    </bean>
 
 </beans>
