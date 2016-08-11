@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Austin
-  Date: 2016/8/4
-  Time: 10:56
+  Date: 2016/8/11
+  Time: 16:13
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -124,8 +124,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Markdown</h1>
-
-
+                    <c:set var="value" value="${value}" scope="application"/>
+                    <script>
+                        var value = "${value}";
+                    </script>
+                    <jsp:include page="jsonedit.jsp"></jsp:include>
 
                 </div>
                 <!-- /.col-lg-12 -->
@@ -137,19 +140,19 @@
     <!-- /#page-wrapper -->
 
 </div>
-    <!-- /#wrapper -->
+<!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="<%=basePath%>/sbadmin/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery -->
+<script src="<%=basePath%>/sbadmin/bower_components/jquery/dist/jquery.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<%=basePath%>/sbadmin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="<%=basePath%>/sbadmin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<%=basePath%>/sbadmin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="<%=basePath%>/sbadmin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="<%=basePath%>/sbadmin/dist/js/sb-admin-2.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="<%=basePath%>/sbadmin/dist/js/sb-admin-2.js"></script>
 
 
 
