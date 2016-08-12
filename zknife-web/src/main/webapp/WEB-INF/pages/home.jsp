@@ -126,7 +126,7 @@
                     <h1 class="page-header">Markdown</h1>
                     <c:set var="value" value="${value}" scope="application"/>
                     <script>
-                        var value = "${value}";
+                        var value = ${value};
                     </script>
                     <jsp:include page="jsonedit.jsp"></jsp:include>
 
