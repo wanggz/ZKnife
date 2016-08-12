@@ -31,20 +31,9 @@ public class IndexController {
 
     @RequestMapping(value="index.do", method = RequestMethod.GET)
     public ModelAndView index() {
-
-        List<String> projects = zkc.getChildren(confPath);
-
-        List<ConfigInfo> configInfos = new ArrayList<>();
-        for (String project : projects) {
-            ConfigInfo configInfo = new ConfigInfo();
-            configInfo.setProjectname(project);
-            configInfo.setConfigs(zkc.getChildren(confPath+"/"+project));
-            configInfos.add(configInfo);
-        }
         ModelAndView mv = new ModelAndView();
-        mv.addObject("configinfos", configInfos);
+        mv.addObject("configinfos", configinfos());
         mv.setViewName("index");
-
         return mv;
     }
 
@@ -90,9 +79,29 @@ public class IndexController {
     }
 
     @RequestMapping(value="add.do", method = RequestMethod.GET)
-    public String add(){
+    public ModelAndView add(){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("configinfos", configinfos());
+        mv.setViewName("add");
+        return mv;
+    }
 
-        return "add";
+    public String add_form(){
+
+        return "home";
+    }
+
+
+    private List<ConfigInfo> configinfos(){
+        List<String> projects = zkc.getChildren(confPath);
+        List<ConfigInfo> configInfos = new ArrayList<>();
+        for (String project : projects) {
+            ConfigInfo configInfo = new ConfigInfo();
+            configInfo.setProjectname(project);
+            configInfo.setConfigs(zkc.getChildren(confPath+"/"+project));
+            configInfos.add(configInfo);
+        }
+        return configInfos;
     }
 
 }
