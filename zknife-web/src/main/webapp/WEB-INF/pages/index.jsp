@@ -106,9 +106,7 @@
                         </div>
                         <!-- /input-group -->
                     </li>
-                    <li>
-                        <a href="tables.html"><i class="fa fa-plus-circle fa-fw"></i> | Add a new project</a>
-                    </li>
+
                     <jsp:include page="projects.jsp"></jsp:include>
 
                 </ul>

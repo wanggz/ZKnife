@@ -73,6 +73,8 @@ public class IndexController {
                     if(c.equals(config)){
                         String content = new String(zkc.readData(confPath + "/" + p + "/" + c));
                         JSONObject contentJson = JSONObject.parseObject(content);
+                        mv.addObject("project",p);
+                        mv.addObject("config",c);
                         mv.addObject("value",contentJson.toJSONString());
                     }
                 }
@@ -80,6 +82,17 @@ public class IndexController {
         }
         mv.setViewName("home");
         return mv;
+    }
+
+    public String update(){
+
+        return null;
+    }
+
+    @RequestMapping(value="add.do", method = RequestMethod.GET)
+    public String add(){
+
+        return "add";
     }
 
 }

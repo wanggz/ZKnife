@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div id="mainView" ng-controller="MainViewCtrl" ng-app="JSONedit">
-    <h2>JSONedit</h2>
-
     <div class="jsonView">
         <json child="jsonData" default-collapsed="false" type="object"></json>
     </div>

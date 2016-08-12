@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Austin
-  Date: 2016/8/11
-  Time: 16:13
+  Date: 2016/8/12
+  Time: 17:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -121,15 +121,18 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h5 class="page-header">
-                        <ol class="breadcrumb">
-                            <li>${project}</li>
-                            <li>${config}</li>
-                        </ol>
-                    </h5>
-                    <c:set var="value" value="${value}" scope="application"/>
+                    <div class="form-group">
+                        <label>Project Name</label>
+                        <input class="form-control">
+                        <p class="help-block">Input Your Project Name in this text box.</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Config Name</label>
+                        <input class="form-control">
+                        <p class="help-block">Input Your Config Name in this text box.</p>
+                    </div>
                     <script>
-                        var value = ${value};
+                        var value = "";
                     </script>
                     <jsp:include page="jsonedit.jsp"></jsp:include>
 
@@ -162,3 +165,4 @@
 </body>
 
 </html>
+

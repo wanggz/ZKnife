@@ -8,6 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<li>
+    <a href="tables.html"><i class="fa fa-plus-circle fa-fw"></i> | Add a new project</a>
+</li>
+
 <c:forEach items="${configinfos}" var="configinfo" varStatus="i">
     <li>
         <a href="#"><i class="fa fa-edit fa-fw"></i> | ${configinfo.projectname}<span class="fa arrow"/></a>
